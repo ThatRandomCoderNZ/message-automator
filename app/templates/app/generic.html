@@ -26,6 +26,7 @@
                 
             </table>
             <button v-on:click='addTableRow' >+</button>
+            <button v-if="counter > 1" v-on:click='removeTableRow'>-</button>
         </div>
         <button id="submit">Send SMS</button>
     </section>
@@ -40,6 +41,10 @@
             methods: {
                 addTableRow() { 
                     this.counter++;
+                },
+
+                removeTableRow() {
+                    this.counter--;
                 }
             } 
         });
