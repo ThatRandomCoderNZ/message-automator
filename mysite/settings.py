@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-y0*ozlu4_k7eur1nxf7fs46jtlf7l6j)%s&jo#vlxnk9l%cuwn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['aqueous-caverns-52477.herokuapp.com']
+ALLOWED_HOSTS = ['aqueous-caverns-52477.herokuapp.com',
+                 'localhost',]
 
 
 # Application definition
@@ -57,7 +58,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['app/templates/    app/',],
+        'DIRS': ['app/templates/app/',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
