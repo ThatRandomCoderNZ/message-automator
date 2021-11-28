@@ -8,3 +8,96 @@
     flex-direction: column;
 }
 
+#message-editor{
+    width: 300px;
+}
+
+
+.highlighted{
+    border-radius: 6px;
+    padding: 4px;
+    background-color: blue;
+}
+
+body{
+    margin: 0px!important;
+    border: none;
+    padding: 0px;
+    background-color: #9cffc9;
+    display:flex;
+    flex-wrap: wrap;
+    position: relative;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-family: sans-serif;
+  }
+  
+
+
+*{
+    box-sizing: border-box;
+  }
+  html{
+    width: 100%;
+    height: 100%;
+  }
+  .main-container{
+     background-color: rgba(0,0,0,0.1);
+      padding: 50px;
+      border-radius: 4px;
+  }
+  h1,h2,h3,h4{
+    color: #222;
+    text-shadow: 0px 0px 1px #fff;
+    margin: 30px 0 0 0;
+  }
+  .editable {
+      padding: 10px 12px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      line-height: 26px;
+      width: 400px;
+      height: 300px;
+  }
+  
+  
+  .editable:focus{
+    border-color: aqua;
+  }
+  
+  [contenteditable=true]:empty:before{
+    color: #ccc;
+    content: attr(placeholder);
+    display: block; /* For Firefox */
+    white-space: pre-wrap;
+  }
+  .dis{
+    color: #444;
+    margin: 40px 0;
+  }
+  .emojione-icon{
+    width: 100%;
+    margin:40px 0;
+  }
+  
+  .tag {
+      border-radius: 3px;
+      background: #cfc;
+      border: 1px solid #0f0;
+      color: #1ca;
+      margin: 0 3px 3px 0;
+      padding: 1px 3px;
+      display: inline-flex;
+      align-items: center;
+  }
+  .person{
+       background: #ccc;
+       border-radius: 3px;
+      margin: 0 3px 3px 0;
+      padding: 1px 3px;
+      display: inline-flex;
+      align-items: center;
+  }
