@@ -12,6 +12,7 @@ document.addEventListener('keydown', (e) => {
 
 const details = new Vue({
     el: '#app',
+    delimiters: ["[[", "]]"],
     data: {
         counter:1,
         keywords: ["Number"],
