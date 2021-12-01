@@ -22,12 +22,13 @@
     </section>
     <section id="detail-area">
         <div id="app" class="flex-vertical">
+            <button v-if="keywords.length > 1" v-on:click='reset'>Reset Variables</button>
             <table id="detail-table">
                 <tr>
-                <th class="detail-header">Number</th>
+                <th v-for="keyword in keywords" class="detail-header">{{ keyword }}</th>
                 </tr>
                 <tr v-for="index in counter">
-                    <td><input type="text"></td>
+                    <td v-for="keyword in keywords"><input type="text"></td>
                 </tr>
                 
             </table>
@@ -37,6 +38,6 @@
         <button id="submit">Send SMS</button>
     </section>
 
-    <script src="/static/app/app.js" defer="true"> </script>
+    <script src="/static/app/app.js" type="module" defer="true"> </script>
 </body>
 </html>

@@ -1,7 +1,18 @@
+import { EventBus } from './EventBus.js';
+
 let details = new Vue({
     el: '#app',
     data: {
-        counter:1
+        counter:1,
+        keywords: ["Number"],
+    },
+
+    mounted() {
+        EventBus.$on("newKeyword", (keyword) => {
+            console.log(this.keywords);
+            this.keywords.push(keyword);
+            console.log(this.keywords);
+        });
     },
     
     methods: {
@@ -11,7 +22,12 @@ let details = new Vue({
 
         removeTableRow() {
             this.counter--;
-        }
+        },
+
+        reset(){
+            this.keywords = ["Number"];
+        },
+
     } 
 });
         //
@@ -446,6 +462,7 @@ $('.editable').on('input change', e => {
             find: new RegExp(/([/]{2})\w+/g),
             convertTo: function(match) {
                 let keyword = match.slice(2, match.length);
+                EventBus.$emit("newKeyword", keyword);
                 return `<div class="tag">${keyword}</div> `
             }
         },
