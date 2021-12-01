@@ -26,7 +26,7 @@
             <table id="detail-table">
                 <thead>
                     <tr>
-                        <th v-model="keywords" v-for="(keyword, index) in keywords" :key="index" class="detail-header">{{keyword}}</th>
+                        <th v-for="(keyword, index) in keywords" :key="index">{{index}}</th>
                     </tr>
                 </thead>
                 <tbody>                

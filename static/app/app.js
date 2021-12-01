@@ -10,7 +10,7 @@ document.addEventListener('keydown', (e) => {
     }
 })
 
-let details = new Vue({
+const details = new Vue({
     el: '#app',
     data: {
         counter:1,
