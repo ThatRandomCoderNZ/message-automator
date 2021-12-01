@@ -25,7 +25,7 @@
             <button v-if="keywords.length > 1" v-on:click='reset'>Reset Variables</button>
             <table id="detail-table">
                 <tr>
-                <th v-for="keyword in keywords" :key="keyword" dclass="detail-header">{{ keyword }}</th>
+                <th v-for="keyword in keywords" :key="keyword" class="detail-header">{{ keyword }}</th>
                 </tr>
                 <tr v-for="index in counter">
                     <td v-for="keyword in keywords"><input type="text"></td>
