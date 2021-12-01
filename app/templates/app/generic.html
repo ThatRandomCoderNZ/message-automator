@@ -24,12 +24,17 @@
         <div id="app" class="flex-vertical">
             <button v-if="keywords.length > 1" v-on:click='reset'>Reset Variables</button>
             <table id="detail-table">
-                <tr>
-                <td v-for="keyword in keywords" :key="keyword" class="detail-header">{{ keyword }}</td>
-                </tr>
-                <tr v-for="index in counter">
-                    <td v-for="keyword in keywords"><input type="text"></td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th v-for="keyword in keywords" :key="keyword" class="detail-header">{{ keyword }}</th>
+                    </tr>
+                </thead>
+                <tbody>                
+                    <tr v-for="index in counter">
+                        <td v-for="keyword in keywords"><input type="text"></td>
+                    </tr>
+                </tbody>
+
                 
             </table>
             <button v-on:click='addTableRow' >+</button>
