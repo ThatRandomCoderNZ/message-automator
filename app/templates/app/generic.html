@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0-rc.3/jquery-ui.min.js"></script>
     <script src="https://unpkg.com/vuex"></script>
     <link rel="stylesheet" type="text/css" href="/static/app/styles.css"/>
     <title>Document</title>
@@ -16,7 +17,7 @@
             <div class="main-container">
                 <h1>Send Messages</h1>
                 <em>Use // for variable keywords. E.g. name, time, place</em><br/><br/>
-                <div class="editable" contenteditable="true" placeholder='Enter your message here. Use // to introduce a new keyword'></div>
+                <div id="message-editor" class="editable" contenteditable="true" placeholder='Enter your message here. Use // to introduce a new keyword'></div>
                 </div>
         </div>  
     </section>
@@ -31,7 +32,7 @@
                 </thead>
                 <tbody>                
                     <tr v-for="index in counter">
-                        <td v-for="keyword in keywords"><input type="text"></td>
+                        <td v-for="keyword in keywords"><input v-if="keyword == 'Number'" type="number"><input v-else type="text"></td>
                     </tr>
                 </tbody>
 

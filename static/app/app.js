@@ -10,6 +10,26 @@ document.addEventListener('keydown', (e) => {
     }
 })
 
+let tags = [];
+
+
+const observer = new MutationObserver((mutation) => {
+    let currentMutation = mutation[0];
+    if(currentMutation.removedNodes.length > 0){
+        console.log(currentMutation);
+        if(currentMutation.removedNodes[0].nodeName == "DIV"){
+            if(currentMutation.removedNodes[0].className == "tag"){
+                let keyword = currentMutation.removedNodes[0].innerText;
+                EventBus.$emit("removeKeyword", keyword);
+                console.log(keyword);
+            }
+        }
+    }
+})
+
+observer.observe(document.querySelector("#message-editor"), {childList: true});
+
+
 const details = new Vue({
     el: '#app',
     delimiters: ["[[", "]]"],
@@ -28,6 +48,11 @@ const details = new Vue({
         EventBus.$on("add", () =>{
             this.counter++;
         });
+
+
+        EventBus.$on("removeKeyword", (keyword) => {
+            this.keywords.splice(this.keywords.indexOf(keyword), 1);
+        })
     },
     
     methods: {
@@ -468,7 +493,6 @@ function handleDataColumns(keyword){
 //THIS IS THE USAGE PART
 
 $('.editable').on('input change', e => {
-    console.log("change registered");
 
     replaceIt({
         e: e,
