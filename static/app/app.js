@@ -1,5 +1,15 @@
 import { EventBus } from './EventBus.js';
 
+let lastKey = "";
+document.addEventListener('keydown', (e) => {
+    if(e.code == "Enter" && e.ctrlKey){
+        EventBus.$emit("add");
+        lastKey = "";
+    }else{
+        lastKey = e.code;
+    }
+})
+
 let details = new Vue({
     el: '#app',
     data: {
@@ -12,6 +22,10 @@ let details = new Vue({
             console.log(this.keywords);
             this.keywords.push(keyword);
             console.log(this.keywords);
+        });
+
+        EventBus.$on("add", () =>{
+            this.counter++;
         });
     },
     
