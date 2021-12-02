@@ -2,9 +2,22 @@ import { EventBus } from './EventBus.js';
 
 let lastKey = "";
 document.addEventListener('keydown', (e) => {
-    if(e.code == "Enter" && e.ctrlKey){
-        EventBus.$emit("add");
-        lastKey = "";
+    if(e.code == "Enter"){
+        if(e.ctrlKey){
+            EventBus.$emit("add");
+            lastKey = "";
+        }else if(document.activeElement.parentElement.nodeName == "TD"){
+            if(document.activeElement.parentElement.nextSibling){
+                document.activeElement.parentElement.nextSibling.childNodes[0].focus();
+            }else 
+            {
+                if(document.activeElement.parentElement.parentElement.nextSibling){
+                    document.activeElement.parentElement.parentElement.nextSibling.firstChild.firstChild.focus();
+                }else{
+                    EventBus.$emit("add");
+                }
+            }
+        }
     }else{
         lastKey = e.code;
     }
@@ -30,6 +43,13 @@ const observer = new MutationObserver((mutation) => {
 observer.observe(document.querySelector("#message-editor"), {childList: true});
 
 
+const focusLastRow = () => {
+    let table = document.querySelector("#detail-table");
+    table.lastChild.lastChild.firstChild.firstChild.focus();
+}
+
+let moveFocus = false;
+
 const details = new Vue({
     el: '#app',
     delimiters: ["[[", "]]"],
@@ -47,6 +67,7 @@ const details = new Vue({
 
         EventBus.$on("add", () =>{
             this.counter++;
+            moveFocus = true;
         });
 
 
@@ -55,6 +76,15 @@ const details = new Vue({
         })
     },
     
+    updated(){
+        this.$nextTick(() => {
+            if(moveFocus){
+                moveFocus = false;
+                focusLastRow();
+            }
+        })
+    },
+
     methods: {
         addTableRow() { 
             this.counter++;
