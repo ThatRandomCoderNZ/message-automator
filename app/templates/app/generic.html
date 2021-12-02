@@ -12,6 +12,16 @@
     <title>Document</title>
 </head>
 <body class="flex-horizontal">
+    <!-- The Modal -->  
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-message">Some text in the Modal..</div>
+        </div>
+    
+    </div>
     <section>
         <div id="message-area">
             <div class="main-container">
@@ -30,7 +40,7 @@
                         <th v-for="(keyword, index) in keywords">[[keyword]]</th>
                     </tr>
                 </thead>
-                <tbody>                
+                <tbody id="detail-data">                
                     <tr v-for="index in counter">
                         <td v-for="keyword in keywords"><input v-if="keyword == 'Number'" type="number"><input v-else type="text"></td>
                     </tr>
@@ -40,8 +50,9 @@
             </table>
             <button v-on:click='addTableRow' >+</button>
             <button v-if="counter > 1" v-on:click='removeTableRow'>-</button>
+            <button id="submit" v-on:click='formatText'>Send SMS</button>
         </div>
-        <button id="submit">Send SMS</button>
+        
     </section>
 
     <script src="/static/app/app.js" type="module" defer="true"> </script>

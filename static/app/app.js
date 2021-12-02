@@ -1,5 +1,25 @@
 import { EventBus } from './EventBus.js';
 
+// Get the modal
+var modal = document.getElementById("myModal");
+
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
 let lastKey = "";
 document.addEventListener('keydown', (e) => {
     if(e.code == "Enter"){
@@ -24,7 +44,6 @@ document.addEventListener('keydown', (e) => {
 })
 
 let tags = [];
-
 
 const observer = new MutationObserver((mutation) => {
     let currentMutation = mutation[0];
@@ -96,6 +115,49 @@ const details = new Vue({
 
         reset(){
             this.keywords = ["Number"];
+        },
+
+        formatText(){
+            modal.style.display = "block";
+            const editor = document.querySelector("#message-editor");
+            let message = editor.innerHTML.toString();
+            message = message.replace(/&nbsp;/g, "");
+            message = message.replace(/<div>/g, "\n");
+            console.log(message);
+            message = message.replace(/(<div class="tag" data-converted="true" title=")/g, "");
+            console.log(message);
+            message = message.replace(/(" draggable="false".+?<\/div>)/g, "");
+            console.log(message);
+            message = message.replace(/<\/div>/g, "\n");
+            message = message.replace(/\n{2,}/g, "\n");
+            console.log(message);
+
+
+            const dataContainer = document.querySelector("#detail-data");
+            let outputMessages = [];
+            for(let row = 0; row < this.counter; row++){
+                let currentMessage = message;
+                let currentRow = dataContainer.childNodes[row];
+                let phoneNumber = currentRow.childNodes[0].firstChild.value;
+                if(phoneNumber){
+                    for(let col = 1; col < this.keywords.length; col++){
+                        let currentKeyword = this.keywords[col];
+                        let value = currentRow.childNodes[col].firstChild.value;
+                        currentMessage = currentMessage.replace("//".concat(currentKeyword), value);
+                    }
+                }
+                outputMessages.push("Send To: ".concat(phoneNumber)
+                .concat("\n")
+                .concat(currentMessage));
+            }
+
+            const modalNode = document.querySelector("#modal-message");
+            let finalString = "";
+            for(let i in outputMessages){
+                finalString += "<p>" + outputMessages[i] + "</p>";
+            }
+            modalNode.innerHTML = finalString;
+            console.log(outputMessages);
         },
 
     } 
