@@ -145,10 +145,11 @@ const details = new Vue({
                         let value = currentRow.childNodes[col].firstChild.value;
                         currentMessage = currentMessage.replace("//".concat(currentKeyword), value);
                     }
-                }
-                outputMessages.push("Send To: ".concat(phoneNumber)
+                    outputMessages.push("Send To: ".concat(phoneNumber)
                 .concat("\n")
                 .concat(currentMessage));
+                }
+                
             }
 
             const modalNode = document.querySelector("#modal-message");
