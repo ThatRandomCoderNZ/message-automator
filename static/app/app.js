@@ -21,13 +21,13 @@ window.onclick = function(event) {
 }
 
 let lastKey = "";
-document.addEventListener('keydown', (e) => {
+document.querySelector("#detail-area").addEventListener('keydown', (e) => {
     if(e.code == "Enter"){
         if(e.ctrlKey){
             EventBus.$emit("add");
             lastKey = "";
         }else if(document.activeElement.parentElement.nodeName == "TD"){
-            if(document.activeElement.parentElement.nextSibling){
+            if(document.activeElement.parentElement.nextSibling.className == "details"){
                 document.activeElement.parentElement.nextSibling.childNodes[0].focus();
             }else 
             {
@@ -38,7 +38,12 @@ document.addEventListener('keydown', (e) => {
                 }
             }
         }
-    }else{
+    }else if(e.code =="Backspace"){
+        if(e.ctrlKey){
+            EventBus.$emit("remove");
+        }
+    }
+    else{
         lastKey = e.code;
     }
 })
@@ -46,17 +51,20 @@ document.addEventListener('keydown', (e) => {
 let tags = [];
 
 const observer = new MutationObserver((mutation) => {
-    let currentMutation = mutation[0];
-    if(currentMutation.removedNodes.length > 0){
-        console.log(currentMutation);
-        if(currentMutation.removedNodes[0].nodeName == "DIV"){
-            if(currentMutation.removedNodes[0].className == "tag"){
-                let keyword = currentMutation.removedNodes[0].innerText;
-                EventBus.$emit("removeKeyword", keyword);
-                console.log(keyword);
+    console.log(mutation);
+    for(let i = 0; i < mutation.length; i++){
+        let currentMutation = mutation[i];
+        if(currentMutation.removedNodes.length > 0){
+            console.log(currentMutation);
+            if(currentMutation.removedNodes[0].nodeName == "DIV"){
+                if(currentMutation.removedNodes[0].className == "tag"){
+                    let keyword = currentMutation.removedNodes[0].innerText;
+                    EventBus.$emit("removeKeyword", keyword);
+                    console.log(keyword);
+                }
             }
         }
-    }
+    }   
 })
 
 observer.observe(document.querySelector("#message-editor"), {childList: true});
@@ -89,6 +97,13 @@ const details = new Vue({
             moveFocus = true;
         });
 
+        EventBus.$on("remove", () =>{
+            if(this.counter > 1){
+                this.counter--;
+            }
+
+        });
+
 
         EventBus.$on("removeKeyword", (keyword) => {
             this.keywords.splice(this.keywords.indexOf(keyword), 1);
@@ -117,12 +132,17 @@ const details = new Vue({
             this.keywords = ["Number"];
         },
 
+        removeSpecificRow(e){
+            e.target.parentElement.parentElement.remove();
+            console.log(this.counter);
+        },
+
         formatText(){
             modal.style.display = "block";
             const editor = document.querySelector("#message-editor");
             let message = editor.innerHTML.toString();
             message = message.replace(/&nbsp;/g, "");
-            message = message.replace(/<div>/g, "\n");
+            message = message.replace(/<div>/g, "<br>");
             console.log(message);
             message = message.replace(/(<div class="tag" data-converted="true" title=")/g, "");
             console.log(message);
@@ -134,20 +154,27 @@ const details = new Vue({
 
 
             const dataContainer = document.querySelector("#detail-data");
+            let rowCount = dataContainer.childNodes.length;
             let outputMessages = [];
-            for(let row = 0; row < this.counter; row++){
+            for(let row = 0; row < rowCount; row++){
                 let currentMessage = message;
                 let currentRow = dataContainer.childNodes[row];
                 let phoneNumber = currentRow.childNodes[0].firstChild.value;
+                let validEntry = true;
                 if(phoneNumber){
                     for(let col = 1; col < this.keywords.length; col++){
                         let currentKeyword = this.keywords[col];
                         let value = currentRow.childNodes[col].firstChild.value;
+                        if(!value){
+                            validEntry = false;
+                        }
                         currentMessage = currentMessage.replace("//".concat(currentKeyword), value);
                     }
-                    outputMessages.push("Send To: ".concat(phoneNumber)
-                .concat("\n")
-                .concat(currentMessage));
+                    if(validEntry){
+                        outputMessages.push("To: ".concat(phoneNumber)
+                                        .concat("<br>")
+                                        .concat(currentMessage));
+                    }
                 }
                 
             }

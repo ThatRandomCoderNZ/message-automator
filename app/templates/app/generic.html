@@ -42,7 +42,10 @@
                 </thead>
                 <tbody id="detail-data">                
                     <tr v-for="index in counter">
-                        <td v-for="keyword in keywords"><input v-if="keyword == 'Number'" type="number"><input v-else type="text"></td>
+                        <td class="details" v-for="keyword in keywords"><input v-if="keyword == 'Number'" type="number">
+                            <input required v-else type="text">
+                        </td>
+                        <td><button v-on:click="removeSpecificRow">x</button></td>
                     </tr>
                 </tbody>
 
