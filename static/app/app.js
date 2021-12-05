@@ -22,6 +22,7 @@ window.onclick = function(event) {
 
 let lastKey = "";
 document.querySelector("#detail-area").addEventListener('keydown', (e) => {
+    console.log(e.code);
     if(e.code == "Enter"){
         if(e.ctrlKey){
             EventBus.$emit("add");
@@ -90,6 +91,10 @@ const details = new Vue({
             console.log(this.keywords);
             this.keywords.push(keyword);
             console.log(this.keywords);
+            this.$nextTick(()=> {
+                updateTableHeader();
+            });
+            
         });
 
         EventBus.$on("add", () =>{
@@ -214,6 +219,36 @@ function currentText(element) {
         }
     }
 }
+
+function updateTableHeader(){
+    // Change the selector if needed
+    var $table = $('table'),
+        $bodyCells = $table.find('tbody tr:first').children(),
+        colWidth;
+
+    // Get the tbody columns width array
+    colWidth = $bodyCells.map(function() {
+        return $(this).width();
+    }).get();
+
+    // Set the width of thead columns
+    $table.find('thead tr').children().each(function(i, v) {
+        $(v).width(colWidth[i]);
+    }); 
+}    
+
+
+$(document).ready(function() {
+    $("input[type=number]").on("focus", function() {
+      $(this).on("keydown", function(event) {
+        if (event.keyCode === 38 || event.keyCode === 40 || event.keyCode === 69) {
+          event.preventDefault();
+        }
+      });
+    });
+  });
+
+updateTableHeader();
 
 function replaceInsert(el, title, replaceWith){
   var current = currentText(el)

@@ -8,9 +8,6 @@
     flex-direction: column;
 }
 
-#message-editor{
-    width: 300px;
-}
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -27,53 +24,67 @@ input[type=number] {
 .highlighted{
     border-radius: 6px;
     padding: 4px;
-    background-color: blue;
+    background-color: transparent;
 }
 
 body{
     margin: 0px!important;
     border: none;
     padding: 0px;
-    background-color: #ccc;
+    background-color:#F6FAFF;;
     display:flex;
     flex-wrap: wrap;
     position: relative;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 100%;
-    font-family: sans-serif;
+    font-family: "Open Sans";
   }
   
 
 
-*{
-    box-sizing: border-box;
-  }
+
   html{
     width: 100%;
     height: 100%;
+    background: #F6FAFF;
   }
+
   .main-container{
-     background-color: rgba(0,0,0,0.1);
-      padding: 50px;
-      border-radius: 4px;
+    background-color: rgba(0,0,0,0.1);
+    padding: 50px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 22px -8px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
   }
-  h1,h2,h3,h4{
-    color: #222;
-    text-shadow: 0px 0px 1px #fff;
-    margin: 30px 0 0 0;
+
+  .main-container h1{
+    color: #160F57;
   }
+
+  .main-container em{
+    color: #9C9C9C;
+    font-weight: 600;
+  }
+
   .editable {
       padding: 10px 12px;
       background-color: #fff;
       border: 1px solid #ccc;
+      align-self: center;
       border-radius: 4px;
       line-height: 26px;
-      width: 400px;
-      height: 300px;
+      width: 30vw;
+      height: 25vh;
   }
   
+  #app{
+    height: 100%;
+  }
   
   .editable:focus{
     border-color: aqua;
@@ -96,9 +107,9 @@ body{
   
   .tag {
       border-radius: 3px;
-      background: rgb(204, 209, 255);
-      border: 1px solid rgb(68, 0, 255);
-      color: rgb(67, 17, 204);
+      background: transparent;
+      border: 1px solid #0083FF;
+      color: #0083FF;
       margin: 0 3px 3px 0;
       padding: 1px 3px;
       display: inline-flex;
@@ -118,7 +129,7 @@ body{
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 3; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -150,4 +161,273 @@ body{
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+#message-area{
+  margin-left: 4vw;
+}
+
+
+
+
+#detail-area{
+  height: 100%;
+  width: fit-content;
+  padding: 0 3vw;
+  background-color: #FFFFFF;
+  z-index: 1;
+  filter: drop-shadow(-4px 0px 15px rgba(0, 0, 0, 0.25));
+}
+
+
+
+.detail-info-container{
+  margin-top: 15vh;
+}
+
+.detail-info-container p{
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 18px;
+
+  color: #9C9C9C;
+}
+
+.detail-info-container h3{
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 33px;
+
+  color: #160F57;
+}
+
+.table-container{
+  display: flex;
+  align-items: center;
+  align-self: center;
+  height: fit-content;
+  
+}
+
+thead, tbody { display: block; }
+
+th{
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+  /* identical to box height */
+
+
+  color: #0083FF;
+}
+
+
+tbody {
+    height: 38vh;       /* Just for the demo          */
+    overflow-y: auto;    /* Trigger vertical scroll    */
+    overflow-x: hidden;  /* Hide the horizontal scroll */
+}
+
+#detail-table{
+  border-spacing: .5vw;
+
+}
+
+.detail-input{
+  width: 150px;
+  height: 35px;
+  border: 1px solid #a8a8a8;
+  border-radius: 3px;
+  box-sizing: border-box;
+  padding-left: .75em;
+
+}
+
+::placeholder{
+  color: #C4C4C4;
+}
+
+
+.header-row{
+  height: 6vh;
+  text-align: center;
+  margin-bottom: 2vh;
+  box-shadow: 4px 4px 22px -4px rgba(0, 0, 0, 0.25);
+}
+
+.details-table-header tr{
+  margin-top: 40px;
+}
+
+.details-table-header tr th{
+  vertical-align: middle;
+}
+
+
+
+.button-invis{
+  border: none;
+  background-color: transparent;
+  width: 14px;
+  height: 33px;
+  font-style: normal;
+  margin-right: 20px;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 33px;
+  /* identical to box height */
+  color: #C4C4C4;
+}
+
+.table-control-container{
+  margin-top: 1vh;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+}
+
+.generic-button{
+  background-color: transparent;
+  border: none;
+
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  vertical-align: middle;
+  
+
+  color: #0083FF;
+}
+
+button:hover{
+  cursor: pointer;
+}
+
+.button-contents{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.sign{
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  font-style: normal;
+  font-weight: bold;
+  margin: auto;
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  border: 1px solid #0083FF;
+  box-sizing: border-box;
+  margin-right: 10px;
+}
+
+#submit{
+  width: 15vw;
+  height: 6vh;
+  background: #0083FF;
+  border-radius: 10px;
+  color: white;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 25px;
+  border: none;
+  align-self: center;
+  margin-top: auto;
+  margin-bottom: 4vh;
+}
+
+#message-area{
+  justify-self: center;
+  align-self: center;
+}
+
+header{
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+
+  z-index: 2;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  background: #FFFFFF;
+  height: 77px;
+  left: 0px;
+  top: 0px;
+
+  filter: drop-shadow(0px 2px 10px rgba(0, 0, 0, 0.25));
+}
+
+.logo-holder{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items: center;
+  margin-left: 4vw;
+  
+}
+
+.logo-header{
+  margin-left: 14px;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 33px;
+  color: #0083FF;
+}
+
+.logo-box{
+  width: 3em;
+}
+
+.logo-image{
+  width: 100%;
+  height: auto;
+}
+
+.profile-box{
+  width: 3em;
+  margin-right: 4vw;
+}
+
+.profile-picture{
+  border-radius: 50%;
+  width: 100%;
+  height: auto;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+  background : transparent;
+  border-radius: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #c5c5c5;
+  border-radius: 10px;
+  width : 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #8F8F8F; 
 }
