@@ -134,7 +134,7 @@ const details = new Vue({
         },
 
         reset(){
-            this.keywords = ["Number"];
+            this.keywords = ["Phone Number"];
         },
 
         removeSpecificRow(e){

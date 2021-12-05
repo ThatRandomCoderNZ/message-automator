@@ -182,7 +182,7 @@ body{
 
 
 .detail-info-container{
-  margin-top: 15vh;
+  margin-top: 10vh;
 }
 
 .detail-info-container p{
@@ -224,7 +224,7 @@ th{
 
 
 tbody {
-    height: 38vh;       /* Just for the demo          */
+    height: 60vh;       /* Just for the demo          */
     overflow-y: auto;    /* Trigger vertical scroll    */
     overflow-x: hidden;  /* Hide the horizontal scroll */
 }

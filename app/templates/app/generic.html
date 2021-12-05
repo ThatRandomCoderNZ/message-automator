@@ -48,18 +48,14 @@
     <section id="detail-area">
         <div id="app" class="flex-vertical">
             <div class="detail-info-container">
-                <h3>New Recipients</h3>
-                <div class="extra-info">
-                    <p>Hotkey:</p>
-                    <p>Ctrl + Enter = Add a line</p>
-                    <p>Ctrl + BkSpc = Delete a line</p>
-                </div>
+
+
             </div>
             <div class="table-container">
                 <table id="detail-table">
                     <thead class="details-table-header">
                         <tr class="header-row">
-                            <th v-for="(keyword, index) in keywords">[[keyword]]*</th>
+                            <th v-for="(keyword, index) in keywords">[[keyword]]</th>
 
                         </tr>
                     </thead>
@@ -91,7 +87,7 @@
                 </button>
             </div>
 
-            <button id="submit" v-on:click='formatText'>Check Message</button>
+            <button id="submit" v-on:click='formatText'>Send Messages</button>
         </div>
         
     </section>
