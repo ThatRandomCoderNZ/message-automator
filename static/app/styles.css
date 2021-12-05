@@ -182,7 +182,7 @@ body{
 
 
 .detail-info-container{
-  margin-top: 10vh;
+  margin-top: 11vh;
 }
 
 .detail-info-container p{
@@ -330,19 +330,19 @@ button:hover{
 }
 
 #submit{
-  width: 15vw;
-  height: 6vh;
+  width: 25vw;
+  height: 8vh;
   background: #0083FF;
   border-radius: 10px;
   color: white;
   font-style: normal;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 1.7rem;
   line-height: 25px;
   border: none;
   align-self: center;
   margin-top: auto;
-  margin-bottom: 4vh;
+  margin-bottom: 3vh;
 }
 
 #message-area{
@@ -361,7 +361,7 @@ header{
 
   width: 100%;
   background: #FFFFFF;
-  height: 77px;
+  height: 10vh;
   left: 0px;
   top: 0px;
 
