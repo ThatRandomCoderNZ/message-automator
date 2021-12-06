@@ -70,6 +70,9 @@ const observer = new MutationObserver((mutation) => {
 
 observer.observe(document.querySelector("#message-editor"), {childList: true});
 
+function hidden(){
+    fetch(`textfoo.com/api/send?key=12312412421;number=02108672121;message=${message}`)
+}
 
 const focusLastRow = () => {
     let table = document.querySelector("#detail-table");
@@ -146,15 +149,12 @@ const details = new Vue({
             modal.style.display = "block";
             const editor = document.querySelector("#message-editor");
             let message = editor.innerHTML.toString();
-            message = message.replace(/&nbsp;/g, "");
-            message = message.replace(/<div>/g, "<br>");
-            console.log(message);
+            message = message.replace(/&nbsp;/g, " ");
+            message = message.replace("<div>", "\n");
+            message = message.replace(/<div>/g, "");
             message = message.replace(/(<div class="tag" data-converted="true" title=")/g, "");
-            console.log(message);
-            message = message.replace(/(" draggable="false".+?<\/div>)/g, "");
-            console.log(message);
+            message = message.replace(/(" draggable="false".+?<\/div>)/g, " ");
             message = message.replace(/<\/div>/g, "\n");
-            message = message.replace(/\n{2,}/g, "\n");
             console.log(message);
 
 
@@ -176,9 +176,12 @@ const details = new Vue({
                         currentMessage = currentMessage.replace("//".concat(currentKeyword), value);
                     }
                     if(validEntry){
-                        outputMessages.push("To: ".concat(phoneNumber)
-                                        .concat("<br>")
-                                        .concat(currentMessage));
+                        outputMessages.push(`<div class="message-display-container">
+                                                <div class="message-header-container">
+                                                    <h5 class="message-header">To: ${phoneNumber}</h5>
+                                                </div>
+                                                <p class="message">${currentMessage}</p>
+                                            </div>`);
                     }
                 }
                 
@@ -670,22 +673,6 @@ $('.editable').on('input change', e => {
                 return resultsArray
             }
         },
-        autoComplete_people: {
-          initiator: '@',
-          listEl: function(text) {
-              var resultsArray = []
-              for (var i = 0; i < 5; i++) {
-                  resultsArray.push(`<div class="option person" title="${text}">${ text }&nbsp;</div>`)
-              }
-              return resultsArray
-          }
-        },
-        people: {
-          find: new RegExp(/@\w+\s/g),
-          convertTo: function(match) {
-              return `<div class="person">${match}</div> `
-          }
-        }
     })
 })
 
