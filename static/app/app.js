@@ -94,12 +94,13 @@ document.getElementById("send-button").addEventListener("click", () => {
     messagesToSend = [];
 */
     let requestBody = {
-        Comment: "Hi there",
-        Name: "John Smith"
+        data: messagesToSend
     }
-    fetch("/api/send-messages/",
+    fetch("http://localhost:8000/api/send-messages/",
     {
+        headers : {"Content-Type": 'application/json'},
         method :"POST",
+        body : JSON.stringify(requestBody)
     }).then(result => {
         console.log(result);
     });
