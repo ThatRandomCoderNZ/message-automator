@@ -104,7 +104,7 @@ document.getElementById("send-button").addEventListener("click", () => {
     }).then(result => {
         console.log(result);
     });
-    
+    messagesToSend = [];
 })
 
 
