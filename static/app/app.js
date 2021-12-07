@@ -20,6 +20,9 @@ window.onclick = function(event) {
   }
 }
 
+
+let messagesToSend = []
+
 let lastKey = "";
 document.querySelector("#detail-area").addEventListener('keydown', (e) => {
     console.log(e.code);
@@ -70,9 +73,7 @@ const observer = new MutationObserver((mutation) => {
 
 observer.observe(document.querySelector("#message-editor"), {childList: true});
 
-function hidden(){
-    fetch(`textfoo.com/api/send?key=12312412421;number=02108672121;message=${message}`)
-}
+
 
 const focusLastRow = () => {
     let table = document.querySelector("#detail-table");
@@ -80,6 +81,20 @@ const focusLastRow = () => {
 }
 
 let moveFocus = false;
+
+/*
+document.getElementById("send-button").addEventListener("click", () => {
+    for(let i = 0; i < messagesToSend.length; i++){
+        let number = messagesToSend[i].number.replace("0", 64);
+        
+        let trial = fetch(`https://textfoo.com/api/send?key=17eab8f4074305e411446df3a0d0acc9485f0fdc&phone=${number}&message=${messagesToSend[i].message.replace("\n", "%0A")}`).then((response) =>{
+            console.log(response);
+        });
+    }
+    messagesToSend = [];
+})
+*/
+
 
 const details = new Vue({
     el: '#app',
@@ -147,9 +162,12 @@ const details = new Vue({
 
         formatText(){
             modal.style.display = "block";
+            document.querySelector("#send-button").addEventListener('onclick', () => {
+                console.log("Me was pressed");
+            })
             const editor = document.querySelector("#message-editor");
             let message = editor.innerHTML.toString();
-            message = message.replace(/&nbsp;/g, " ");
+            message = message.replace(/&nbsp;/g, "");
             message = message.replace("<div>", "\n");
             message = message.replace(/<div>/g, "");
             message = message.replace(/(<div class="tag" data-converted="true" title=")/g, "");
@@ -182,6 +200,7 @@ const details = new Vue({
                                                 </div>
                                                 <p class="message">${currentMessage}</p>
                                             </div>`);
+                        messagesToSend.push({number: phoneNumber, message: currentMessage});
                     }
                 }
                 
