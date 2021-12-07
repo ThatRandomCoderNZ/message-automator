@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-y0*ozlu4_k7eur1nxf7fs46jtlf7l6j)%s&jo#vlxnk9l%cuwn
 DEBUG = True
 
 ALLOWED_HOSTS = ['aqueous-caverns-52477.herokuapp.com',
-                 'localhost',]
+                 'localhost', '127.0.0.1']
 
 
 # Application definition
