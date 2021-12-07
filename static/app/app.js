@@ -184,7 +184,7 @@ const details = new Vue({
             message = message.replace("<div>", "\n");
             message = message.replace(/<div>/g, "");
             message = message.replace(/(<div class="tag" data-converted="true" title=")/g, "");
-            message = message.replace(/(" draggable="false".+?<\/div>)/g, " ");
+            message = message.replace(/(" draggable="false".+?<\/div>)/g, "");
             message = message.replace(/<\/div>/g, "\n");
             console.log(message);
 
@@ -692,7 +692,7 @@ $('.editable').on('input change', e => {
             convertTo: function(match) {
                 let keyword = match.slice(2, match.length);
                 EventBus.$emit("newKeyword", keyword);
-                return `<div class="tag">${keyword}</div> `
+                return `<div class="tag">${keyword}</div>`
             }
         },
         autoComplete_tag: {
