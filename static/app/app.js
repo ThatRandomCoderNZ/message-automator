@@ -82,9 +82,9 @@ const focusLastRow = () => {
 
 let moveFocus = false;
 
-/*
+
 document.getElementById("send-button").addEventListener("click", () => {
-    for(let i = 0; i < messagesToSend.length; i++){
+/*    for(let i = 0; i < messagesToSend.length; i++){
         let number = messagesToSend[i].number.replace("0", 64);
         
         let trial = fetch(`https://textfoo.com/api/send?key=17eab8f4074305e411446df3a0d0acc9485f0fdc&phone=${number}&message=${messagesToSend[i].message.replace("\n", "%0A")}`).then((response) =>{
@@ -92,8 +92,20 @@ document.getElementById("send-button").addEventListener("click", () => {
         });
     }
     messagesToSend = [];
-})
 */
+    let requestBody = {
+        Comment: "Hi there",
+        Name: "John Smith"
+    }
+    fetch("/api/send-messages/",
+    {
+        method :"POST",
+    }).then(result => {
+        console.log(result);
+    });
+    
+})
+
 
 
 const details = new Vue({
