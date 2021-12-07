@@ -96,7 +96,7 @@ document.getElementById("send-button").addEventListener("click", () => {
     let requestBody = {
         data: messagesToSend
     }
-    fetch("http://localhost:8000/api/send-messages/",
+    fetch("/api/send-messages/",
     {
         headers : {"Content-Type": 'application/json'},
         method :"POST",
