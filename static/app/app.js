@@ -2,6 +2,7 @@ import { EventBus } from './EventBus.js';
 
 // Get the modal
 var modal = document.getElementById("myModal");
+var successModal = document.getElementById("success-modal");
 
 
 // Get the <span> element that closes the modal
@@ -17,6 +18,8 @@ span.onclick = function() {
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
+  }else if(event.target == successModal){
+      successModal.style.display = "none";
   }
 }
 
@@ -93,6 +96,7 @@ document.getElementById("send-button").addEventListener("click", () => {
     }
     messagesToSend = [];
 */
+    
     let requestBody = {
         data: messagesToSend
     }
@@ -105,8 +109,15 @@ document.getElementById("send-button").addEventListener("click", () => {
         console.log(result);
     });
     messagesToSend = [];
+    showSuccessMessage();
 })
 
+
+const showSuccessMessage = ()=>{
+    console.log("Success message");
+    modal.style.display = "none";
+    successModal.style.display = "block";
+}
 
 
 const details = new Vue({

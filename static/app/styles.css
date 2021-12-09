@@ -513,3 +513,16 @@ header{
 ::-webkit-scrollbar-thumb:hover {
   background: #8F8F8F; 
 }
+
+.center{
+  margin: auto 0;
+}
+
+.flex-right{
+  align-self:flex-end;
+}
+
+#success-modal div{
+  height: 40vh;
+  margin: 10% auto 0 auto;
+}
