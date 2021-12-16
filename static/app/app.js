@@ -184,6 +184,7 @@ const details = new Vue({
             })
             const editor = document.querySelector("#message-editor");
             let message = editor.innerHTML.toString();
+            message = message.replace(/&nbsp;/g, " ");
             message = message.replace("<div>", "\n");
             message = message.replace(/<div>/g, "");
             message = message.replace(/(<div class="tag" data-converted="true" title=")/g, "");
