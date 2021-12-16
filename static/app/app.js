@@ -87,16 +87,6 @@ let moveFocus = false;
 
 
 document.getElementById("send-button").addEventListener("click", () => {
-/*    for(let i = 0; i < messagesToSend.length; i++){
-        let number = messagesToSend[i].number.replace("0", 64);
-        
-        let trial = fetch(`https://textfoo.com/api/send?key=17eab8f4074305e411446df3a0d0acc9485f0fdc&phone=${number}&message=${messagesToSend[i].message.replace("\n", "%0A")}`).then((response) =>{
-            console.log(response);
-        });
-    }
-    messagesToSend = [];
-*/
-    
     let requestBody = {
         data: messagesToSend
     }
@@ -169,6 +159,7 @@ const details = new Vue({
     methods: {
         addTableRow() { 
             this.counter++;
+            
         },
 
         removeTableRow() {
@@ -184,7 +175,9 @@ const details = new Vue({
             console.log(this.counter);
         },
 
+
         formatText(){
+            messagesToSend = [];
             modal.style.display = "block";
             document.querySelector("#send-button").addEventListener('onclick', () => {
                 console.log("Me was pressed");
@@ -284,15 +277,6 @@ function updateTableHeader(){
 }    
 
 
-$(document).ready(function() {
-    $("input[type=number]").on("focus", function() {
-      $(this).on("keydown", function(event) {
-        if (event.keyCode === 38 || event.keyCode === 40 || event.keyCode === 69) {
-          event.preventDefault();
-        }
-      });
-    });
-  });
 
 updateTableHeader();
 

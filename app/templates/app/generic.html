@@ -69,7 +69,8 @@
                     </thead>
                     <tbody id="detail-data">                
                         <tr v-for="index in counter">
-                            <td class="details" v-for="keyword in keywords"><input v-if="keyword == 'Number'" type="number" class="detail-input"  placeholder="E.g 0211234567"/>
+                            <td class="details" v-for="keyword in keywords">
+                                <input v-if="keyword == 'Number'" type="number" class="detail-input" v-on:keydown.e.prevent v-on:keydown.up.prevent v-on:keydown.down.prevent placeholder="E.g 0211234567"/>
                                 <input required v-else class="detail-input" type="text" />
                             </td>
                             <td><button v-if="counter > 1"  v-on:click="removeSpecificRow" class="button-invis">x</button></td>
