@@ -14,7 +14,7 @@ class SendMessagesView(APIView):
         data = body['data']
         for message in data:
             query = {'key': '17eab8f4074305e411446df3a0d0acc9485f0fdc',
-                     'phone': message['number'].replace("0", "64", 1),
+                     'phone': message['number'].replace("0", "64", 1).replace("'", "’").replace('"', '"'),
                      'message': message['message']}
             response = requests.get("https://textfoo.com/api/send", params=query)
 
